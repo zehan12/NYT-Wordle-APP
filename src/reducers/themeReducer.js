@@ -5,6 +5,7 @@ export const initialState = {
 };
 
 export default function themeReducer(state = initialState, action) {
+    console.log(action,"action")
     switch (action.type) {
         case actions.LIGHT:
             localStorage.setItem("dark", false);
