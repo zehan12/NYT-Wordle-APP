@@ -1,3 +1,4 @@
+import { useLayoutEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiHelpCircle } from "react-icons/bi";
 import { BsQuestionCircle, BsMoonFill, BsFillSunFill } from "react-icons/bs";
@@ -7,11 +8,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { theme } from "../actions/themeActions";
 
 const Header = () => {
-    const s = useSelector(state => state)
-    console.log(s, "state")
     const dark = useSelector(state => state.theme.dark)
     const dispatch = useDispatch()
-    console.log(dark)
+
+    useLayoutEffect(() => {
+        document.querySelector('body').style.background =  dark ? `#000000` :"#FFFFFF"
+
+    })
 
     return (
 
@@ -31,7 +34,7 @@ const Header = () => {
                     onClick={() => dispatch(theme(!dark))}
                     className="block mt-5 mr-4  lg:inline-block lg:mt-0" href="#">
                     {
-dark ?  <BsMoonFill size={30} color={"white"} /> : <BsFillSunFill size={30} color={"black"}  />
+                        dark ? <BsFillSunFill size={30} color={"white"} /> : <BsMoonFill size={30} color={"black"} />
                     }
                 </a>
                 <a className="block mt-5 mr-4  lg:inline-block lg:mt-0" href="#">
