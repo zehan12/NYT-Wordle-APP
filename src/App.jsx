@@ -1,12 +1,13 @@
+import { Fragment } from "react"
+import Header from "./components/Header"
 
 
 function App() {
 
   return (
-    <div className="bg-red-400">
-      <h1>Wordle</h1>
-
-    </div>
+    <Fragment>
+      <Header />
+    </Fragment>
   )
 }
 
