@@ -19,6 +19,13 @@ const Keyboard = () => {
                 if (currAttempt.letter !== 5) return;
                 // animation time 
                 dispatch({ type: "SET_CURR_ATTEMPT", payload: { attempt: currAttempt.attempt + 1, letter: 0 } })
+            } else if (keyVal === "BACKSPACE") {
+                if (currAttempt.letter === 0) return;
+                const newBoard = [...board];
+                newBoard[currAttempt.attempt][currAttempt.letter - 1] = "";
+                console.log("here")
+                dispatch({ type: "SET_BOARD", payload: newBoard });
+                dispatch({ type: "SET_CURR_ATTEMPT", payload: { ...currAttempt, letter: currAttempt.letter - 1 } })
             } else {
                 if (currAttempt.letter > 4) return;
                 const newBoard = [...board];
