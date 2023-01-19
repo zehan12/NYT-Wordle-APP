@@ -19,7 +19,6 @@ const Keyboard = ({
     const board = useSelector((state) => state.board.board);
 
     const handleKeyboard = useCallback((event) => {
-        console.log(event.key, "sd")
         if (event.key.toLowerCase() === "enter") {
             console.log("press :: enter")
             onEnter()

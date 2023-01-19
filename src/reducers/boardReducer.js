@@ -9,6 +9,7 @@ export const initialState = {
         ["", "", "", "", ""],
         ["", "", "", "", ""],
     ],
+    correctWord: "RIGHT",
     wordSet: new Set(),
     currAttempt: { attempt: 0, letter: 0 },
 
@@ -45,9 +46,9 @@ export default function boardReducer(state = initialState, action) {
 
             return { ...state, currAttempt: { attempt: state.currAttempt.attempt + 1, letter: 0 } };
 
-            // return { attempt: currAttempt.attempt + 1, letter: 0 }
-            // return { ...state, currAttempt: { attempt: state.currAttempt.attempt + 1, letter: 0 } };
-            // return { ...state, currAttempt: state.currAttempt, gameOver }
+        // return { attempt: currAttempt.attempt + 1, letter: 0 }
+        // return { ...state, currAttempt: { attempt: state.currAttempt.attempt + 1, letter: 0 } };
+        // return { ...state, currAttempt: state.currAttempt, gameOver }
         case 'ON_DELETE':
             newBoard = [...state.board];
             newBoard[state.currAttempt.attempt][state.currAttempt.letter - 1] = "";
