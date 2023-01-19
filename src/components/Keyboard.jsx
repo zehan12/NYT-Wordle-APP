@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 
-const Keyboard = () => {
+const Keyboard = ({
+    onEnter,
+    onDelete,
+    onSelectLetter
+}) => {
     const keyboardKeys = [
         ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
         ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l',],
@@ -16,22 +20,23 @@ const Keyboard = () => {
 
         const selectLetter = () => {
             if (keyVal === "ENTER") {
-                if (currAttempt.letter !== 5) return;
-                // animation time 
-                dispatch({ type: "SET_CURR_ATTEMPT", payload: { attempt: currAttempt.attempt + 1, letter: 0 } })
+                // if (currAttempt.letter !== 5) return;
+                // dispatch({ type: "SET_CURR_ATTEMPT", payload: { attempt: currAttempt.attempt + 1, letter: 0 } })
+                onEnter()
             } else if (keyVal === "BACKSPACE") {
-                if (currAttempt.letter === 0) return;
-                const newBoard = [...board];
-                newBoard[currAttempt.attempt][currAttempt.letter - 1] = "";
-                console.log("here")
-                dispatch({ type: "SET_BOARD", payload: newBoard });
-                dispatch({ type: "SET_CURR_ATTEMPT", payload: { ...currAttempt, letter: currAttempt.letter - 1 } })
+                // if (currAttempt.letter === 0) return;
+                // const newBoard = [...board];
+                // newBoard[currAttempt.attempt][currAttempt.letter - 1] = "";
+                // dispatch({ type: "SET_BOARD", payload: newBoard });
+                // dispatch({ type: "SET_CURR_ATTEMPT", payload: { ...currAttempt, letter: currAttempt.letter - 1 } })
+                onDelete()
             } else {
-                if (currAttempt.letter > 4) return;
-                const newBoard = [...board];
-                newBoard[currAttempt.attempt][currAttempt.letter] = keyVal;
-                dispatch({ type: "SET_BOARD", payload: newBoard });
-                dispatch({ type: "SET_CURR_ATTEMPT", payload: { ...currAttempt, letter: currAttempt.letter + 1 } })
+                // if (currAttempt.letter > 4) return;
+                // const newBoard = [...board];
+                // newBoard[currAttempt.attempt][currAttempt.letter] = keyVal;
+                // dispatch({ type: "SET_BOARD", payload: newBoard });
+                // dispatch({ type: "SET_CURR_ATTEMPT", payload: { ...currAttempt, letter: currAttempt.letter + 1 } })
+                onSelectLetter(keyVal)
             }
         }
         return (
