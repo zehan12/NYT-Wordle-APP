@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
 import Board from "../components/Board";
+import Keyboard from "../components/Keyboard";
 
 const Main = () => {
 
@@ -12,6 +13,7 @@ const Main = () => {
             <Provider store={store} >
                 <Header />
                 <Board />
+                <Keyboard />
             </Provider>
         </Fragment>
     )

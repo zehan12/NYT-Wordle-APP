@@ -11,7 +11,7 @@ const Board = () => {
     //     ["", "", "", "", ""],
     // ]);
     return (
-        <div className="w-[450px] h-[550px] flex flex-col mx-auto" style={{ border: "2px solid black" }}>
+        <div className="w-[450px] h-[550px] flex flex-col mx-auto pb-[7px]" style={{ border: "2px solid black" }}>
             <div className="flex-[33%] flex flex-row m-[5px]">
                 <Letter letterPos={0} attemptVal={0} />
                 <Letter letterPos={1} attemptVal={0} />
