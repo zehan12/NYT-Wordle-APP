@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Keyboard = ({
@@ -11,10 +12,37 @@ const Keyboard = ({
         ['Enter', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Backspace'],
     ];
 
+
     const dispatch = useDispatch();
     const currAttempt = useSelector((state) => state.board.currAttempt)
     console.log(currAttempt, "current attempt");
     const board = useSelector((state) => state.board.board);
+
+    const handleKeyboard = useCallback((event) => {
+        console.log(event.key, "sd")
+        if (event.key.toLowerCase() === "enter") {
+            console.log("press :: enter")
+            onEnter()
+        } else if (event.key.toLowerCase() === "backspace") {
+            console.log("press :: backspace")
+            onDelete()
+        } else {
+            keyboardKeys.flat(Infinity).forEach((key) => {
+                if (event.key === key) {
+                    onSelectLetter(key.toUpperCase())
+                }
+            })
+        }
+    })
+
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyboard)
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyboard)
+        }
+    }, [handleKeyboard]);
 
     const Key = ({ keyVal, disabled, bigKey }) => {
 
@@ -53,7 +81,7 @@ const Keyboard = ({
 
     return (
         <div className="w-[700px] h-[300px] mt-[40px] mx-auto"
-        // onKeyDown={}
+            onKeyDown={handleKeyboard}
         >
             {keyboardKeys.map((keys, index) => {
                 return (
